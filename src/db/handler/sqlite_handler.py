@@ -1,12 +1,12 @@
 # encode:utf-8
 
 import sqlite3
-from .database_handler import DatabaseHandler
+from db.handler.database_handler import DatabaseHandler
 
 
 class SqliteHandler(DatabaseHandler):
     """ constants """
-    _DEFAULT_DB_NAME = "db.name"
+    _DEFAULT_DB_NAME = "osakaben.db"
 
     """ constructors """
     def __init__(self, db_name=_DEFAULT_DB_NAME):
@@ -14,11 +14,11 @@ class SqliteHandler(DatabaseHandler):
         self._c = self._conn.cursor()
 
     """ public methods """
-    def execute(self, sql):
-        return self._c.execute(sql)
+    def execute(self, sql, params):
+        return self._c.execute(sql, params)
 
     def commit(self):
-        self._c.execute('commit')
+        self._conn.commit()
 
     def rollback(self):
-        self._c.execute('rollback')
+        self._conn.rollback()

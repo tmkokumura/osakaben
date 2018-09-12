@@ -24,10 +24,13 @@ logger.info('init RuleTranslator')
 translator = RuleTranslator()
 
 """ read text """
-txt = "なぜですか"
-logger.info('input text: ' + txt)
+input_text = "なぜですか"
+logger.info('input text: ' + input_text)
 
 """ translate """
-txt = translator.translate(txt)
-logger.info('output text: ' + txt)
+output_text = translator.translate(input_text)
+logger.info('output text: ' + output_text)
+
+""" save text """
+sql = 'insert into TT_TEXT (INPUT_TEXT, INPUT_DT, OUTPUT_TEXT, OUTPUT_DT) values (?,?,?,?)'
 
